@@ -3,6 +3,72 @@ header{
   background:url(../../assets/img/map.png) no-repeat center;
   background-size:cover;
 }
+.btn-green:hover{
+  background-color: rgb(0, 255, 106);
+}
+
+#main-nav #slide_out_menu .slide_out_menu_footer .socials {
+  margin: 18px 0 0;
+}
+
+#main-nav #slide_out_menu .slide_out_menu_footer .socials li {
+  display: inline-block;
+  margin: 0 20px 0 0;
+}
+
+#main-nav #slide_out_menu .slide_out_menu_footer .socials li a {
+  color: rgba(255, 255, 255, 0.8);
+  transition: all .2s ease-in-out;
+}
+
+#main-nav #slide_out_menu .slide_out_menu_footer .socials li a:hover {
+  color: #ffffff;
+}
+
+#main-nav #slide_out_menu .slide_out_menu_footer .socials li:last-child {
+  margin-right: 0;
+}
+
+#main-nav #slide_out_menu.xs-screen {
+  overflow-y: auto;
+}
+
+#main-nav #slide_out_menu.xs-screen ul {
+  margin-top: 40px;
+}
+
+#main-nav #slide_out_menu.xs-screen .slide_out_menu_footer {
+  position: relative;
+  padding: 0;
+  margin-top: 40px;
+}
+
+#main-nav #slide_out_menu.xs-screen .slide_out_menu_footer .more-info p {
+  font-size: 14px;
+  line-height: 24px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+
+
+.socials li {
+  display: inline-block;
+  margin: 0 20px 0 0;
+}
+
+.socials li a {
+  color: rgba(255, 255, 255, 0.8);
+  transition: all .2s ease-in-out;
+}
+
+.socials li a:hover {
+  color: #ffffff;
+}
+
+.socials li:last-child {
+  margin-right: 0;
+}
 
 .navbar-nav{
   margin-top:14px;
