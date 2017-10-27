@@ -11,7 +11,25 @@
 	<link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/magnific-popup.css">
   <link rel="stylesheet" href="css/styles.css">
-
+  <div id="map"></div>
+  <script>
+    function initMap() {
+      var Stone_Garden_Citatah = {
+        lat: -6.824767,
+        lng: 107.438178
+      };
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 17,
+        center: Stone_Garden_Citatah
+      });
+      var marker = new google.maps.Marker({
+        position: Stone_Garden_Citatah,
+        map: map
+      });
+    }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLi3_o7lLSuTzfi32ZO8636ONgqeiLcu8&callback=initMap">
+  </script>
 
 </head>
 
@@ -23,25 +41,7 @@
         <h1 class="main-title" style="margin-top: -200px;">
           <span class="thin">Lokasi</span> Wisata Stone Garden</h1>
       </div>
-      <div id="map"></div>
-      <script>
-        function initMap() {
-          var Stone_Garden_Citatah = {
-            lat: -6.824767,
-            lng: 107.438178
-          };
-          var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 17,
-            center: Stone_Garden_Citatah
-          });
-          var marker = new google.maps.Marker({
-            position: Stone_Garden_Citatah,
-            map: map
-          });
-        }
-      </script>
-      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLi3_o7lLSuTzfi32ZO8636ONgqeiLcu8&callback=initMap">
-      </script>
+      
     </div>
   </div>
   <script src='js/jquery-2.1.4.min.js'></script>
