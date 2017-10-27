@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Location</title>
+
+  <link rel="stylesheet" href="css/normalize.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/animate.min.css">
+	<link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+  <link rel="stylesheet" href="css/styles.css">
+
+
+</head>
+
+<body>
+  <div class="container demo">
+    <div class="content">
+      <div id="large-header" class="large-header">
+        <canvas id="demo-canvas"></canvas>
+        <h1 class="main-title" style="margin-top: -200px;">
+          <span class="thin">Lokasi</span> Wisata Stone Garden</h1>
+      </div>
+      <div id="map"></div>
+      <script>
+        function initMap() {
+          var Stone_Garden_Citatah = {
+            lat: -6.824767,
+            lng: 107.438178
+          };
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 17,
+            center: Stone_Garden_Citatah
+          });
+          var marker = new google.maps.Marker({
+            position: Stone_Garden_Citatah,
+            map: map
+          });
+        }
+      </script>
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLi3_o7lLSuTzfi32ZO8636ONgqeiLcu8&callback=initMap">
+      </script>
+    </div>
+  </div>
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/wow.min.js"></script>  
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/main.js"></script>  
+  <script src='js/TweenLite.min.js'></script>
+  <script src='js/EasePack.min.js'></script>
+  <script src='js/demo.js'></script>
+
+  <script src="js/index.js"></script>
+
+</body>
+
+</html>
