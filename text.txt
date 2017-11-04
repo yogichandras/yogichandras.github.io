@@ -1,6 +1,1 @@
-      <td>St. Kiaracondong - St. Padalarang</td>
-                            <td>St. Padalarang - Jalur utama Stone Garden</td>
-                            <td>Jalur utama Stone Garden - Stone Garden</td>
-                            <td>Stone Garden - St. Padalarang</td>
-                            <td>St. Padalarang - St. Kiaracondong</td>
-                            <td>St. Kiaracondong - Cibiru</td>
+-6.893425, 107.604143 kordinat teras Cihampelas

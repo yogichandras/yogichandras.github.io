@@ -1,0 +1,187 @@
+<html class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"
+    lang="en" style="">
+
+<head>
+    <title>KIRI</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="KIRI helps people travelling by means of public transport. Therefore saving both money and the environment at the same time. Tell us where you are and where to go, and we will tell you the transports you need to take.">
+    <meta name="author" content="Project Kiri (KIRI)">
+    <meta name="google-site-verification" content="9AtqvB-LWohGnboiTyhtZUXAEcOql9B-8lDjo_wcUew">
+    <link rel="stylesheet" href="https://kiri.travel/ext/foundation/css/foundation.min.css">
+    <link rel="stylesheet" href="https://kiri.travel/ext/openlayers/ol.css">
+    <link rel="stylesheet" href="https://kiri.travel/stylesheets/styleIndex.css">
+    <link rel="icon" href="https://kiri.travel/images/favicon.ico" type="image/x-icon">
+    <script async="" src="//www.google-analytics.com/analytics.js"></script>
+    <script src="https://kiri.travel/ext/foundation/js/vendor/modernizr.js"></script>
+    <meta class="foundation-data-attribute-namespace">
+    <meta class="foundation-mq-xxlarge">
+    <meta class="foundation-mq-xlarge-only">
+    <meta class="foundation-mq-xlarge">
+    <meta class="foundation-mq-large-only">
+    <meta class="foundation-mq-large">
+    <meta class="foundation-mq-medium-only">
+    <meta class="foundation-mq-medium">
+    <meta class="foundation-mq-small-only">
+    <meta class="foundation-mq-small">
+    <style></style>
+    <meta class="foundation-mq-topbar">
+</head>
+
+<body>
+    <div class="row">
+        <div id="controlpanel" class="large-3 large-push-9 columns">
+            <div class="row center">
+                <img src="https://kiri.travel/images/kiri200.png" alt="KIRI logo">
+            </div>
+            <div class="row">
+                <div class="small-5 columns">
+                    <select id="regionselect">
+                        <option value="bdo" selected="">Bandung</option>
+                        <option value="cgk">Jakarta</option>
+                    </select>
+                </div>
+                <div class="small-7 columns">
+                    <select id="localeselect">
+                        <option value="en" selected="">English</option>
+                        <option value="id">Bahasa Indonesia</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-2 columns">
+                    <label for="startInput" class="inline">From:</label>
+                </div>
+                <div class="small-10 columns">
+                    <input type="text" id="startInput" value="" placeholder="Museum Geologi, Bandung">
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <select id="startSelect" class="hidden"></select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-2 columns">
+                    <label for="finishInput" class="inline">To:</label>
+                </div>
+                <div class="small-10 columns">
+                    <input type="text" id="finishInput" value="" placeholder="Monumen Nasional, Jakarta">
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <select id="finishSelect" class="hidden"></select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-6 columns">
+                    <a href="#" class="small button expand" id="findbutton">
+                        <strong>Find!</strong>
+                    </a>
+                </div>
+                <div class="small-3 columns">
+                    <a href="#" class="small button secondary expand" id="swapbutton">
+                        <img src="https://kiri.travelimages/swap.png" alt="swap">
+                    </a>
+                </div>
+                <div class="small-3 columns">
+                    <a href="#" class="small button secondary expand" id="resetbutton">
+                        <img src="https://kiri.travelimages/reset.png" alt="reset">
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns" id="routingresults">
+                    <div id="results-section-container"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <footer>
+                        <a href="https://projectkiri.github.io/#legal">Legal</a> |
+                        <a href="https://projectkiri.github.io/#feedback">Feedback</a> |
+                        <a href="https://projectkiri.github.io/#about-kiri">About KIRI</a>
+                    </footer>
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+        <div id="map" class="large-9 large-pull-3 columns">
+            <div class="ol-viewport" style="position: relative; overflow: hidden; width: 100%; height: 100%;">
+                <canvas class="ol-unselectable" width="1024" height="446" style="width: 100%; height: 100%;"></canvas>
+                <div class="ol-overlaycontainer"></div>
+                <div class="ol-overlaycontainer-stopevent">
+                    <div class="ol-zoom ol-unselectable ol-control">
+                        <button class="ol-zoom-in" type="button" title="Zoom in">+</button>
+                        <button class="ol-zoom-out" type="button" title="Zoom out">−</button>
+                    </div>
+                    <div class="ol-rotate ol-unselectable ol-control ol-hidden">
+                        <button class="ol-rotate-reset" type="button" title="Reset rotation">
+                            <span class="ol-compass" style="transform: rotate(0deg);">⇧</span>
+                        </button>
+                    </div>
+                    <div class="ol-attribution ol-unselectable ol-control ol-collapsed">
+                        <ul>
+                            <li style="">
+                                <a href="http://openlayers.org/">
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAA3NCSVQICAjb4U/gAAAACXBIWXMAAAHGAAABxgEXwfpGAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAhNQTFRF////AP//AICAgP//AFVVQECA////K1VVSbbbYL/fJ05idsTYJFtbbcjbJllmZszWWMTOIFhoHlNiZszTa9DdUcHNHlNlV8XRIVdiasrUHlZjIVZjaMnVH1RlIFRkH1RkH1ZlasvYasvXVsPQH1VkacnVa8vWIVZjIFRjVMPQa8rXIVVkXsXRsNveIFVkIFZlIVVj3eDeh6GmbMvXH1ZkIFRka8rWbMvXIFVkIFVjIFVkbMvWH1VjbMvWIFVlbcvWIFVla8vVIFVkbMvWbMvVH1VkbMvWIFVlbcvWIFVkbcvVbMvWjNPbIFVkU8LPwMzNIFVkbczWIFVkbsvWbMvXIFVkRnB8bcvW2+TkW8XRIFVkIlZlJVloJlpoKlxrLl9tMmJwOWd0Omh1RXF8TneCT3iDUHiDU8LPVMLPVcLPVcPQVsPPVsPQV8PQWMTQWsTQW8TQXMXSXsXRX4SNX8bSYMfTYcfTYsfTY8jUZcfSZsnUaIqTacrVasrVa8jTa8rWbI2VbMvWbcvWdJObdcvUdszUd8vVeJaee87Yfc3WgJyjhqGnitDYjaarldPZnrK2oNbborW5o9bbo9fbpLa6q9ndrL3ArtndscDDutzfu8fJwN7gwt7gxc/QyuHhy+HizeHi0NfX0+Pj19zb1+Tj2uXk29/e3uLg3+Lh3+bl4uXj4ufl4+fl5Ofl5ufl5ujm5+jmySDnBAAAAFp0Uk5TAAECAgMEBAYHCA0NDg4UGRogIiMmKSssLzU7PkJJT1JTVFliY2hrdHZ3foSFhYeJjY2QkpugqbG1tre5w8zQ09XY3uXn6+zx8vT09vf4+Pj5+fr6/P39/f3+gz7SsAAAAVVJREFUOMtjYKA7EBDnwCPLrObS1BRiLoJLnte6CQy8FLHLCzs2QUG4FjZ5GbcmBDDjxJBXDWxCBrb8aM4zbkIDzpLYnAcE9VXlJSWlZRU13koIeW57mGx5XjoMZEUqwxWYQaQbSzLSkYGfKFSe0QMsX5WbjgY0YS4MBplemI4BdGBW+DQ11eZiymfqQuXZIjqwyadPNoSZ4L+0FVM6e+oGI6g8a9iKNT3o8kVzNkzRg5lgl7p4wyRUL9Yt2jAxVh6mQCogae6GmflI8p0r13VFWTHBQ0rWPW7ahgWVcPm+9cuLoyy4kCJDzCm6d8PSFoh0zvQNC5OjDJhQopPPJqph1doJBUD5tnkbZiUEqaCnB3bTqLTFG1bPn71kw4b+GFdpLElKIzRxxgYgWNYc5SCENVHKeUaltHdXx0dZ8uBI1hJ2UUDgq82CM2MwKeibqAvSO7MCABq0wXEPiqWEAAAAAElFTkSuQmCC">
+                                </a>
+                                <img src="http://dev.virtualearth.net/Branding/logo_powered_by.png">
+                            </li>
+                            <li>© 2017 HERE</li>
+                            <li>© 2017 Microsoft Corporation</li>
+                            <li>
+                                <a class="ol-attribution-bing-tos" href="http://www.microsoft.com/maps/product/terms.html">Terms of Use</a>
+                            </li>
+                            <li style="display: none;">© 2017 Zenrin</li>
+                        </ul>
+                        <button type="button" title="Attributions">
+                            <span>i</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://kiri.travel/ext/foundation/js/vendor/jquery.js"></script>
+    <script src="https://kiri.travel/ext/foundation/js/vendor/fastclick.js"></script>
+    <script src="https://kiri.travel/ext/foundation/js/foundation.min.js"></script>
+    <script src="https://kiri.travel/ext/foundation/js/foundation/foundation.alert.js"></script>
+    <script src="https://kiri.travel/ext/openlayers/ol.js"></script>
+    <script>
+        var region = 'bdo';
+        $(document).foundation();
+        var input_text = {
+            "start": null,
+            "finish": null
+        };
+        var coordinates = {
+            "start": null,
+            "finish": null
+        };
+    </script>
+    <script src="https://kiri.travel/mainpage/js/protocol.js"></script>
+    <script src="https://kiri.travel/mainpage/js/main.js?locale=en"></script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-36656575-2', 'kiri.travel');
+        ga('require', 'displayfeatures');
+        ga('send', 'pageview');
+    </script>
+
+
+</body>
+
+</html>

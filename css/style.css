@@ -54,6 +54,7 @@ h4 {
   line-height: 34px;
   font-weight: 300;
   margin-bottom: 25px;
+  color: black;
 }
 
 .overlay{
@@ -521,7 +522,7 @@ ul > li {
 
 #header {
   /*padding: 208px 0 211px;*/
-  padding : 176px 0 385px;
+  padding : 160px 0 211px;
   background-image: url("../images/banner_background.jpg");
   background-repeat: no-repeat;
   background-position: center center;
@@ -529,6 +530,7 @@ ul > li {
   position: relative;
   overflow: hidden;
 }
+
 
 #header p {
   font-size: 20px;
