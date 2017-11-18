@@ -7,6 +7,11 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
+#isi4{
+  position: relative;
+  padding: 79px 0 330px;
+}
+
 .cf:before,
 .cf:after {
   content: "";
@@ -362,7 +367,7 @@ ul > li {
 
 #main-nav.active {
   background-color: #ffffff;
-  padding: 24px 0;
+  padding: 15px 0;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
   -ms-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);

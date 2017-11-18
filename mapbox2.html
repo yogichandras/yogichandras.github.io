@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Location</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="icon" type="image/png" href="images/lokasi.png" sizes="32x32">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/user.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+        <header>
+                <nav class="navbar navbar-default">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a class="navbar-brand navbar-link" href="http://talentbandung.id">
+                                <i class="glyphicon glyphicon-signal"></i>
+                                <span class="text-title" style="color:black;">TALENT BANDUNG</span>
+                            </a>
+                            <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="collapse navbar-collapse" id="navcol-1">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="active" role="presentation">
+                                    <a href="index.html">HOME </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="mapbox2.html">LOCATION </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            <ul class="nav nav-tabs categories">
+                <li>
+                    <a href="index.html">HOME</a>
+                </li>
+                <li class="active">
+                  <a href="mapbox2.html">LOCATION</a>
+                </li>
+            </ul>
+            <section id="header">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center">
+                      <h1 class="wow fadeInUp">Lokasi Teras Cihampelas</h1>
+                    </div>
+                  </div>
+                </div>
+              </section>
+        <script src='mapbox-gl-directions.js'></script>
+        <link rel='stylesheet' href='mapbox-gl-directions.css' type='text/css' />
+        
+<div id='map' style='width: 100%; height: 600px;'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoieW9naWNoYW5kcmFzIiwiYSI6ImNqOWFyZm9rNjE3cHgycXM0MTNmcW01dGoifQ.Si3sMPXi5YCx4g6CFFOyig';
+var teras_cihampelas = [107.604157, -6.893509];
+var map = new mapboxgl.Map({
+    style: 'mapbox://styles/yogichandras/cj9uxpyym4bps2sr3of45clat',
+    center: teras_cihampelas,
+    zoom: 15,
+    pitch: 45,
+    bearing: -17.6,
+    hash: true,
+    container: 'map'
+});
+
+
+map.addControl(new mapboxgl.GeolocateControl({
+    positionOptions: {
+        enableHighAccuracy: true
+    },
+    trackUserLocation: true
+}), 'bottom-right');
+
+map.on('load', function() {
+    map.loadImage('lokasi2.png', function(error, image) {
+        if (error) throw error;
+        map.addImage('cat', image);
+        map.addLayer({
+            "id": "points",
+            "type": "symbol",
+            "source": {
+                "type": "geojson",
+                "data": {
+                    "type": "FeatureCollection",
+                    "features": [{
+                        "type": "Feature",
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [107.604157,-6.893509]
+                        }
+                    }]
+                }
+            },
+            "layout": {
+                "icon-image": "cat",
+                "icon-size": 0.25
+            }
+        });
+    });
+});
+
+map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
+
+map.addControl(new MapboxDirections({
+    accessToken: mapboxgl.accessToken
+}), 'top-left');
+
+// The 'building' layer in the mapbox-streets vector source contains building-height
+// data from OpenStreetMap.
+map.on('load', function() {
+    // Insert the layer beneath any symbol layer.
+    var layers = map.getStyle().layers.reverse();
+    var labelLayerIdx = layers.findIndex(function (layer) {
+        return layer.type !== 'symbol';
+    });
+    var labelLayerId = labelLayerIdx !== -1 ? layers[labelLayerIdx].id : undefined;
+    map.addLayer({
+        'id': '3d-buildings',
+        'source': 'composite',
+        'source-layer': 'building',
+        'filter': ['==', 'extrude', 'true'],
+        'type': 'fill-extrusion',
+        'minzoom': 15,
+        'paint': {
+            'fill-extrusion-color': '#aaa',
+            'fill-extrusion-height': {
+                'type': 'identity',
+                'property': 'height'
+            },
+            'fill-extrusion-base': {
+                'type': 'identity',
+                'property': 'min_height'
+            },
+            'fill-extrusion-opacity': .6
+        }
+    }, labelLayerId);
+});
+</script>
+<div class="container" style="margin: 23px;">
+<div class="row">
+<div class="col-md-12 text-center">
+<a href="TEST.html"><button type="button" class="btn btn-primary">GOOGLE MAPS</button></a>
+</div>
+</div>
+</div>
+<footer>
+        <ul class="socials" style="margin-left: -74px;">
+                CONTACT ME ON :<br>
+                <li><a href="https://github.com/talentbandung/yogichandras.github.io">Github</a></li>
+                <li><a href="https://www.instagram.com/yogichandras/">Instagram</i></a></li>
+                <li><a href="https://web.facebook.com/yogi.chandras.5">Facebook</i></a></li>
+                <li><a href="mailto:yogey264@gmail.com">Gmail</i></a></li>
+              </ul>
+    </footer>
+</body>
+</html>

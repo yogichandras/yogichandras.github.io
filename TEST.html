@@ -37,9 +37,6 @@
                           <li role="presentation">
                               <a href="TEST.html">LOCATION </a>
                           </li>
-                          <li role="presentation">
-                              <a href="maps.html">NAVIGATION </a>
-                          </li>
                       </ul>
                   </div>
               </div>
@@ -52,9 +49,6 @@
           <li class="active">
             <a href="TEST.html">LOCATION</a>
           </li>
-          <li>
-              <a href="maps.html">NAVIGATION</a>
-            </li>
       </ul>
       <section id="header">
           <div class="container">
@@ -68,13 +62,13 @@
     <div id="map"></div>
     <script>
       function initMap() {
-        var Stone_Garden_Citatah = {lat: -6.893425, lng: 107.604143};
+        var teras_cihampelas = {lat: -6.893425, lng: 107.604143};
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 17,
-          center: Stone_Garden_Citatah
+          center: teras_cihampelas
         });
         var marker = new google.maps.Marker({
-          position: Stone_Garden_Citatah,
+          position: teras_cihampelas,
           map: map
         });
       }
